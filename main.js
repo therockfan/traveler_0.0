@@ -38,7 +38,7 @@ function preload(){
 
 this.load.image(
 'coin',
-'https://labs.phaser.io/assets/sprites/gold_1.png'
+'assets/poo.png'
 )
 
 this.load.image(
@@ -214,4 +214,5 @@ player.setFillStyle(0xff0000)
 player.body.setVelocity(0,0)
 
 }
+
 
