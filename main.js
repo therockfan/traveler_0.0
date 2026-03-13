@@ -43,7 +43,7 @@ this.load.image(
 
 this.load.image(
 'enemy',
-'https://labs.phaser.io/assets/animations/mummy37x45.png'
+'assets/poo.png'
 )
 
 this.load.image(
@@ -214,6 +214,7 @@ player.setFillStyle(0xff0000)
 player.body.setVelocity(0,0)
 
 }
+
 
 
 
