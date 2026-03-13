@@ -2,41 +2,51 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Mario Style Game</title>
+<meta charset="UTF-8">
+<title>Mario Style Web Game</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.js"></script>
+
+<style>
+
+body{
+margin:0;
+padding:0;
+background:black;
+overflow:hidden;
+}
+
+#controls{
+position:fixed;
+bottom:20px;
+width:100%;
+text-align:center;
+}
+
+button{
+font-size:30px;
+width:80px;
+height:80px;
+margin:10px;
+border-radius:10px;
+border:none;
+background:#ffffffaa;
+}
+
+</style>
 
 </head>
 
 <body>
 
 <div id="controls">
-    <button id="left">◀</button>
-    <button id="jump">▲</button>
-    <button id="right">▶</button>
+<button id="left">◀</button>
+<button id="jump">▲</button>
+<button id="right">▶</button>
 </div>
 
 <script src="main.js"></script>
 
 </body>
-
-<style>
-
-#controls{
-    position: fixed;
-    bottom: 20px;
-    width: 100%;
-    text-align: center;
-}
-
-button{
-    font-size: 30px;
-    width: 70px;
-    height: 70px;
-    margin: 10px;
-}
-
-</style>
 
 </html>
