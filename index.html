@@ -14,23 +14,37 @@ margin:0;
 padding:0;
 background:black;
 overflow:hidden;
+touch-action:none;
+user-select:none;
+-webkit-user-select:none;
 }
 
 #controls{
 position:fixed;
 bottom:20px;
 width:100%;
-text-align:center;
+display:flex;
+justify-content:center;
+gap:30px;
+pointer-events:auto;
 }
 
-button{
-font-size:30px;
+.controlBtn{
 width:80px;
 height:80px;
-margin:10px;
-border-radius:10px;
-border:none;
-background:#ffffffaa;
+background:rgba(255,255,255,0.25);
+border-radius:15px;
+display:flex;
+align-items:center;
+justify-content:center;
+touch-action:none;
+}
+
+.controlBtn svg{
+width:40px;
+height:40px;
+fill:white;
+pointer-events:none;
 }
 
 </style>
@@ -40,9 +54,25 @@ background:#ffffffaa;
 <body>
 
 <div id="controls">
-<button id="left">◀</button>
-<button id="jump">▲</button>
-<button id="right">▶</button>
+
+<div class="controlBtn" id="left">
+<svg viewBox="0 0 24 24">
+<polygon points="15,4 5,12 15,20"></polygon>
+</svg>
+</div>
+
+<div class="controlBtn" id="jump">
+<svg viewBox="0 0 24 24">
+<polygon points="12,4 4,16 20,16"></polygon>
+</svg>
+</div>
+
+<div class="controlBtn" id="right">
+<svg viewBox="0 0 24 24">
+<polygon points="9,4 19,12 9,20"></polygon>
+</svg>
+</div>
+
 </div>
 
 <script src="main.js"></script>
