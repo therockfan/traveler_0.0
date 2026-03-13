@@ -1,12 +1,14 @@
 const config = {
+
 type: Phaser.AUTO,
-width: 800,
-height: 400,
+
+width: window.innerWidth,
+height: window.innerHeight,
 
 physics:{
 default:'arcade',
 arcade:{
-gravity:{y:500},
+gravity:{y:900},
 debug:false
 }
 },
@@ -44,19 +46,32 @@ this.load.image(
 
 function create(){
 
+const worldWidth = 4000
+
+this.physics.world.setBounds(0,0,worldWidth,window.innerHeight)
+
+this.cameras.main.setBounds(0,0,worldWidth,window.innerHeight)
+
 platforms = this.physics.add.staticGroup()
 
-platforms
-.create(400,380,'ground')
-.setScale(2)
-.refreshBody()
+for(let i=0;i<20;i++){
 
-player = this.physics.add.sprite(100,200,'player')
+platforms.create(
+i*200,
+window.innerHeight-40,
+'ground'
+).setScale(2).refreshBody()
 
-player.setBounce(0.2)
+}
+
+player = this.physics.add.sprite(200,200,'player')
+
+player.setBounce(0.1)
 player.setCollideWorldBounds(true)
 
 this.physics.add.collider(player,platforms)
+
+this.cameras.main.startFollow(player,true,0.08,0.08)
 
 document.getElementById("left").ontouchstart=()=>moveLeft=true
 document.getElementById("left").ontouchend=()=>moveLeft=false
@@ -72,17 +87,17 @@ document.getElementById("jump").ontouchend=()=>jump=false
 function update(){
 
 if(moveLeft){
-player.setVelocityX(-200)
+player.setVelocityX(-260)
 }
 else if(moveRight){
-player.setVelocityX(200)
+player.setVelocityX(260)
 }
 else{
 player.setVelocityX(0)
 }
 
 if(jump && player.body.touching.down){
-player.setVelocityY(-400)
+player.setVelocityY(-550)
 }
 
 }
