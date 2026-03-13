@@ -132,7 +132,7 @@ coins = this.physics.add.group()
 for(let i=3;i<60;i+=3){
 
 coins.create(
-i*200,
+i*150,
 groundY-150,
 'coin'
 ).setScale(0.7)
@@ -214,5 +214,6 @@ player.setFillStyle(0xff0000)
 player.body.setVelocity(0,0)
 
 }
+
 
 
