@@ -1,62 +1,88 @@
 const config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 400,
-    physics: {
-        default: 'arcade',
-        arcade: {
-            gravity: { y: 500 }
-        }
-    },
-    scene: {
-        preload: preload,
-        create: create,
-        update: update
-    }
-};
+type: Phaser.AUTO,
+width: 800,
+height: 400,
 
-const game = new Phaser.Game(config);
+physics:{
+default:'arcade',
+arcade:{
+gravity:{y:500},
+debug:false
+}
+},
 
-function preload() {
-
-    this.load.image('ground','https://labs.phaser.io/assets/sprites/platform.png');
-    this.load.image('player','https://labs.phaser.io/assets/sprites/phaser-dude.png');
+scene:{
+preload:preload,
+create:create,
+update:update
+}
 
 }
 
-function create() {
+const game = new Phaser.Game(config)
 
-    platforms = this.physics.add.staticGroup();
+let player
+let platforms
 
-    platforms.create(400,380,'ground').setScale(2).refreshBody();
+let moveLeft=false
+let moveRight=false
+let jump=false
 
-    player = this.physics.add.sprite(100,200,'player');
+function preload(){
 
-    player.setBounce(0.2);
-    player.setCollideWorldBounds(true);
+this.load.image(
+'ground',
+'https://labs.phaser.io/assets/sprites/platform.png'
+)
 
-    this.physics.add.collider(player,platforms);
-
-    cursors = this.input.keyboard.createCursorKeys();
+this.load.image(
+'player',
+'https://labs.phaser.io/assets/sprites/phaser-dude.png'
+)
 
 }
 
-function update() {
+function create(){
 
-    if(cursors.left.isDown){
-        player.setVelocityX(-200);
-    }
+platforms = this.physics.add.staticGroup()
 
-    else if(cursors.right.isDown){
-        player.setVelocityX(200);
-    }
+platforms
+.create(400,380,'ground')
+.setScale(2)
+.refreshBody()
 
-    else{
-        player.setVelocityX(0);
-    }
+player = this.physics.add.sprite(100,200,'player')
 
-    if(cursors.up.isDown && player.body.touching.down){
-        player.setVelocityY(-400);
-    }
+player.setBounce(0.2)
+player.setCollideWorldBounds(true)
+
+this.physics.add.collider(player,platforms)
+
+document.getElementById("left").ontouchstart=()=>moveLeft=true
+document.getElementById("left").ontouchend=()=>moveLeft=false
+
+document.getElementById("right").ontouchstart=()=>moveRight=true
+document.getElementById("right").ontouchend=()=>moveRight=false
+
+document.getElementById("jump").ontouchstart=()=>jump=true
+document.getElementById("jump").ontouchend=()=>jump=false
+
+}
+
+function update(){
+
+if(moveLeft){
+player.setVelocityX(-200)
+}
+else if(moveRight){
+player.setVelocityX(200)
+}
+else{
+player.setVelocityX(0)
+}
+
+if(jump && player.body.touching.down){
+player.setVelocityY(-400)
+}
 
 }
